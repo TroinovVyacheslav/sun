@@ -2,113 +2,555 @@
 <html lang="ru">
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-    <meta name="theme-color" content="#ff4f9a">
+    <meta content="width=device-width,initial-scale=1,viewport-fit=cover" name="viewport">
+    <meta content="#ff4f9a" name="theme-color">
     <title>Айжан — 25 💗</title>
     <style>
-        *{box-sizing:border-box}
-        :root{
-            --pink:#ff4f9a;
-            --hot:#ff2d75;
-            --purple:#7657ff;
-            --violet:#a14dff;
-            --yellow:#ffd84d;
-            --cyan:#5ee7ff;
-            --cream:#fff8ef;
-            --ink:#25162f;
+        * {
+            box-sizing: border-box
         }
-        html,body{margin:0;min-height:100%;font-family:Arial,Helvetica,sans-serif;background:#160b28;color:var(--ink)}
-        body{overflow-x:hidden}
-        button{font:inherit}
-        .page{
-            min-height:100svh;
-            position:relative;
-            overflow:hidden;
-            background:
-                    radial-gradient(circle at 8% 8%,#ffdc63 0 5%,transparent 18%),
-                    radial-gradient(circle at 92% 14%,#5ee7ff 0 5%,transparent 18%),
-                    radial-gradient(circle at 8% 82%,#ff65b5 0 7%,transparent 22%),
-                    radial-gradient(circle at 92% 88%,#8e5cff 0 7%,transparent 22%),
-                    linear-gradient(135deg,#ff4f9a 0%,#a14dff 47%,#5647dc 100%);
+
+        :root {
+            --pink: #ff4f9a;
+            --hot: #ff2d75;
+            --purple: #7657ff;
+            --violet: #a14dff;
+            --yellow: #ffd84d;
+            --cyan: #5ee7ff;
+            --cream: #fff8ef;
+            --ink: #25162f;
         }
-        .blob{position:absolute;border-radius:50%;filter:blur(1px);opacity:.85;pointer-events:none}
-        .b1{width:170px;height:170px;background:#ffd84d;top:-60px;left:-55px}
-        .b2{width:130px;height:130px;background:#5ee7ff;right:-35px;top:90px}
-        .b3{width:160px;height:160px;background:#ff72b8;bottom:-70px;left:-55px}
-        .b4{width:180px;height:180px;background:#8d70ff;right:-80px;bottom:-65px}
-        .star{position:absolute;color:#fff;font-size:22px;animation:float 4s ease-in-out infinite;pointer-events:none}
-        .s1{left:9%;top:18%}.s2{right:10%;top:31%;animation-delay:.8s}.s3{left:15%;bottom:17%;animation-delay:1.4s}.s4{right:18%;bottom:23%;animation-delay:2s}
-        @keyframes float{50%{transform:translateY(-12px) rotate(15deg);opacity:.65}}
-        .shell{position:relative;width:min(100%,620px);min-height:100svh;margin:auto;padding:20px 16px 30px;display:flex;flex-direction:column}
-        .topbar{display:flex;justify-content:space-between;align-items:center;color:white;margin-bottom:18px}
-        .logo{font-weight:900;letter-spacing:.08em;font-size:12px;text-transform:uppercase}
-        .badge{background:#ffffff26;border:1px solid #ffffff55;backdrop-filter:blur(12px);padding:8px 11px;border-radius:999px;font-weight:800;font-size:12px}
-        .hero{flex:1;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;color:#fff;padding:20px 0 35px}
-        .kicker{display:inline-flex;gap:7px;align-items:center;background:#ffffff22;border:1px solid #ffffff55;border-radius:999px;padding:9px 13px;font-size:12px;font-weight:800;backdrop-filter:blur(12px);margin-bottom:18px}
-        .hero h1{font-size:clamp(46px,15vw,84px);line-height:.88;margin:0;font-weight:1000;letter-spacing:-.07em;text-shadow:0 7px 0 #7d2b85}
-        .hero h1 span{display:block;color:var(--yellow);transform:rotate(-2deg)}
-        .hero p{font-size:17px;line-height:1.45;max-width:430px;margin:22px 0 28px;font-weight:700}
-        .start{
-            border:0;color:#27122f;background:var(--yellow);padding:18px 28px;border-radius:22px;
-            font-weight:1000;font-size:17px;box-shadow:0 8px 0 #d8942b,0 18px 35px #35123f55;cursor:pointer;
-            transition:.18s transform;
+
+        html, body {
+            margin: 0;
+            min-height: 100%;
+            font-family: Arial, Helvetica, sans-serif;
+            background: #160b28;
+            color: var(--ink)
         }
-        .start:active{transform:translateY(5px);box-shadow:0 3px 0 #d8942b}
-        .mini-note{font-size:11px;opacity:.8;margin-top:18px}
-        .card{
-            background:var(--cream);border:4px solid #fff;border-radius:34px;padding:22px;
-            box-shadow:0 20px 55px #270b3c66;position:relative;overflow:hidden;
+
+        body {
+            overflow-x: hidden
         }
-        .quiz{display:none}
-        .progressRow{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;font-weight:1000;font-size:13px}
-        .progress{height:12px;background:#ead9e8;border-radius:99px;overflow:hidden}
-        .progress i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--hot),var(--purple),var(--cyan));border-radius:inherit;transition:.4s}
-        .questionTag{display:inline-block;margin-top:22px;background:#25162f;color:#fff;padding:7px 10px;border-radius:10px;font-size:11px;font-weight:900;text-transform:uppercase;letter-spacing:.08em}
-        .question{font-size:clamp(26px,7vw,39px);line-height:1.02;letter-spacing:-.045em;font-weight:1000;margin:13px 0 20px}
-        .options{display:grid;gap:11px}
-        .option{
-            width:100%;border:3px solid #25162f;background:#fff;color:#25162f;border-radius:19px;padding:15px 15px;
-            text-align:left;font-weight:900;cursor:pointer;display:flex;align-items:center;gap:11px;transition:.16s;
-            box-shadow:0 4px 0 #25162f;
+
+        button {
+            font: inherit
         }
-        .option .letter{width:31px;height:31px;display:grid;place-items:center;background:#ffcfdf;border-radius:10px;flex:none;font-size:13px}
-        .option:active{transform:translateY(3px);box-shadow:0 1px 0 #25162f}
-        .option.selected{background:#ffd84d}
-        .option.correct{background:#b9ff8a}
-        .option.wrong{background:#ff9ebf}
-        .feedback{min-height:58px;margin-top:15px;padding:13px 14px;border-radius:17px;background:#f2e9ff;display:none;font-weight:800;font-size:13px;line-height:1.35}
-        .next{display:none;margin-top:13px;width:100%;border:0;border-radius:18px;padding:15px;background:#25162f;color:#fff;font-weight:1000;cursor:pointer}
-        .secret{margin-top:16px;text-align:center;color:#795e78;font-size:11px;font-weight:800}
-        .result{display:none;color:#fff;text-align:center;flex:1;justify-content:center;align-items:center;flex-direction:column;padding:25px 0}
-        .confetti{position:absolute;inset:0;pointer-events:none;overflow:hidden}
-        .confetti b{position:absolute;width:10px;height:20px;animation:fall 2.8s linear infinite}
-        @keyframes fall{from{transform:translateY(-80px) rotate(0)}to{transform:translateY(110svh) rotate(720deg)}}
-        .result .eyebrow{font-size:13px;font-weight:1000;letter-spacing:.13em;text-transform:uppercase}
-        .result h2{font-size:clamp(52px,17vw,92px);line-height:.82;margin:17px 0 18px;letter-spacing:-.08em;color:var(--yellow);text-shadow:0 7px 0 #7d2b85}
-        .result p{font-size:17px;line-height:1.4;font-weight:800;max-width:420px}
-        .money{
-            margin:20px 0 8px;padding:20px 28px;background:#fff;border:5px solid var(--yellow);color:#25162f;
-            border-radius:28px;font-size:clamp(42px,14vw,74px);font-weight:1000;letter-spacing:-.07em;
-            box-shadow:0 12px 0 #d8942b,0 20px 40px #32103d66;animation:pop .7s cubic-bezier(.2,1.5,.4,1)
+
+        .page {
+            min-height: 100svh;
+            position: relative;
+            overflow: hidden;
+            background: radial-gradient(circle at 8% 8%, #ffdc63 0 5%, transparent 18%),
+            radial-gradient(circle at 92% 14%, #5ee7ff 0 5%, transparent 18%),
+            radial-gradient(circle at 8% 82%, #ff65b5 0 7%, transparent 22%),
+            radial-gradient(circle at 92% 88%, #8e5cff 0 7%, transparent 22%),
+            linear-gradient(135deg, #ff4f9a 0%, #a14dff 47%, #5647dc 100%);
         }
-        @keyframes pop{from{transform:scale(.2) rotate(-8deg);opacity:0}to{transform:scale(1) rotate(0);opacity:1}}
-        .memories{display:none;color:#fff;text-align:center;padding:20px 0}
-        .memories h3{font-size:34px;line-height:.95;margin:10px 0 14px;letter-spacing:-.05em}
-        .photoGrid{display:grid;grid-template-columns:1.3fr .7fr;gap:10px;margin-top:22px}
-        .photo{
-            width: 100%;min-height:150px;border-radius:24px;background:linear-gradient(135deg,#ffd84d,#ff66ae);border:3px solid #fff;display:grid;place-items:center;font-weight:1000;color:#25162f;box-shadow:0 12px 25px #2c103f55}
-        .photo:nth-child(2){background:linear-gradient(135deg,#5ee7ff,#9c74ff)}
-        .photo:nth-child(3){grid-column:1/-1;background:linear-gradient(135deg,#ff9dcb,#ffd84d)}
-        .restart{margin-top:24px;border:2px solid #ffffff88;background:#ffffff18;color:#fff;padding:13px 18px;border-radius:15px;font-weight:900}
-        @media(max-width:390px){.shell{padding:14px 12px 24px}.card{padding:17px;border-radius:28px}.question{font-size:27px}.option{padding:12px}.option .letter{width:28px;height:28px}}
+
+        .blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(1px);
+            opacity: .85;
+            pointer-events: none
+        }
+
+        .b1 {
+            width: 170px;
+            height: 170px;
+            background: #ffd84d;
+            top: -60px;
+            left: -55px
+        }
+
+        .b2 {
+            width: 130px;
+            height: 130px;
+            background: #5ee7ff;
+            right: -35px;
+            top: 90px
+        }
+
+        .b3 {
+            width: 160px;
+            height: 160px;
+            background: #ff72b8;
+            bottom: -70px;
+            left: -55px
+        }
+
+        .b4 {
+            width: 180px;
+            height: 180px;
+            background: #8d70ff;
+            right: -80px;
+            bottom: -65px
+        }
+
+        .star {
+            position: absolute;
+            color: #fff;
+            font-size: 22px;
+            animation: float 4s ease-in-out infinite;
+            pointer-events: none
+        }
+
+        .s1 {
+            left: 9%;
+            top: 18%
+        }
+
+        .s2 {
+            right: 10%;
+            top: 31%;
+            animation-delay: .8s
+        }
+
+        .s3 {
+            left: 15%;
+            bottom: 17%;
+            animation-delay: 1.4s
+        }
+
+        .s4 {
+            right: 18%;
+            bottom: 23%;
+            animation-delay: 2s
+        }
+
+        @keyframes float {
+            50% {
+                transform: translateY(-12px) rotate(15deg);
+                opacity: .65
+            }
+        }
+
+        .shell {
+            position: relative;
+            width: min(100%, 620px);
+            min-height: 100svh;
+            margin: auto;
+            padding: 20px 16px 30px;
+            display: flex;
+            flex-direction: column
+        }
+
+        .topbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: white;
+            margin-bottom: 18px
+        }
+
+        .logo {
+            font-weight: 900;
+            letter-spacing: .08em;
+            font-size: 12px;
+            text-transform: uppercase
+        }
+
+        .badge {
+            background: #ffffff26;
+            border: 1px solid #ffffff55;
+            backdrop-filter: blur(12px);
+            padding: 8px 11px;
+            border-radius: 999px;
+            font-weight: 800;
+            font-size: 12px
+        }
+
+        .hero {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: #fff;
+            padding: 20px 0 35px
+        }
+
+        .kicker {
+            display: inline-flex;
+            gap: 7px;
+            align-items: center;
+            background: #ffffff22;
+            border: 1px solid #ffffff55;
+            border-radius: 999px;
+            padding: 9px 13px;
+            font-size: 12px;
+            font-weight: 800;
+            backdrop-filter: blur(12px);
+            margin-bottom: 18px
+        }
+
+        .hero h1 {
+            font-size: clamp(46px, 15vw, 84px);
+            line-height: .88;
+            margin: 0;
+            font-weight: 1000;
+            letter-spacing: -.07em;
+            text-shadow: 0 7px 0 #7d2b85
+        }
+
+        .hero h1 span {
+            display: block;
+            color: var(--yellow);
+            transform: rotate(-2deg)
+        }
+
+        .hero p {
+            font-size: 17px;
+            line-height: 1.45;
+            max-width: 430px;
+            margin: 22px 0 28px;
+            font-weight: 700
+        }
+
+        .start {
+            border: 0;
+            color: #27122f;
+            background: var(--yellow);
+            padding: 18px 28px;
+            border-radius: 22px;
+            font-weight: 1000;
+            font-size: 17px;
+            box-shadow: 0 8px 0 #d8942b, 0 18px 35px #35123f55;
+            cursor: pointer;
+            transition: .18s transform;
+        }
+
+        .start:active {
+            transform: translateY(5px);
+            box-shadow: 0 3px 0 #d8942b
+        }
+
+        .mini-note {
+            font-size: 11px;
+            opacity: .8;
+            margin-top: 18px
+        }
+
+        .card {
+            background: var(--cream);
+            border: 4px solid #fff;
+            border-radius: 34px;
+            padding: 22px;
+            box-shadow: 0 20px 55px #270b3c66;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .quiz {
+            display: none
+        }
+
+        .progressRow {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+            font-weight: 1000;
+            font-size: 13px
+        }
+
+        .progress {
+            height: 12px;
+            background: #ead9e8;
+            border-radius: 99px;
+            overflow: hidden
+        }
+
+        .progress i {
+            display: block;
+            height: 100%;
+            width: 0;
+            background: linear-gradient(90deg, var(--hot), var(--purple), var(--cyan));
+            border-radius: inherit;
+            transition: .4s
+        }
+
+        .questionTag {
+            display: inline-block;
+            margin-top: 22px;
+            background: #25162f;
+            color: #fff;
+            padding: 7px 10px;
+            border-radius: 10px;
+            font-size: 11px;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: .08em
+        }
+
+        .question {
+            font-size: clamp(26px, 7vw, 39px);
+            line-height: 1.02;
+            letter-spacing: -.045em;
+            font-weight: 1000;
+            margin: 13px 0 20px
+        }
+
+        .options {
+            display: grid;
+            gap: 11px
+        }
+
+        .option {
+            width: 100%;
+            border: 3px solid #25162f;
+            background: #fff;
+            color: #25162f;
+            border-radius: 19px;
+            padding: 15px 15px;
+            text-align: left;
+            font-weight: 900;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 11px;
+            transition: .16s;
+            box-shadow: 0 4px 0 #25162f;
+        }
+
+        .option .letter {
+            width: 31px;
+            height: 31px;
+            display: grid;
+            place-items: center;
+            background: #ffcfdf;
+            border-radius: 10px;
+            flex: none;
+            font-size: 13px
+        }
+
+        .option:active {
+            transform: translateY(3px);
+            box-shadow: 0 1px 0 #25162f
+        }
+
+        .option.selected {
+            background: #ffd84d
+        }
+
+        .option.correct {
+            background: #b9ff8a
+        }
+
+        .option.wrong {
+            background: #ff9ebf
+        }
+
+        .feedback {
+            min-height: 58px;
+            margin-top: 15px;
+            padding: 13px 14px;
+            border-radius: 17px;
+            background: #f2e9ff;
+            display: none;
+            font-weight: 800;
+            font-size: 13px;
+            line-height: 1.35
+        }
+
+        .next {
+            display: none;
+            margin-top: 13px;
+            width: 100%;
+            border: 0;
+            border-radius: 18px;
+            padding: 15px;
+            background: #25162f;
+            color: #fff;
+            font-weight: 1000;
+            cursor: pointer
+        }
+
+        .secret {
+            margin-top: 16px;
+            text-align: center;
+            color: #795e78;
+            font-size: 11px;
+            font-weight: 800
+        }
+
+        .result {
+            display: none;
+            color: #fff;
+            text-align: center;
+            flex: 1;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            padding: 25px 0
+        }
+
+        .confetti {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            overflow: hidden
+        }
+
+        .confetti b {
+            position: absolute;
+            width: 10px;
+            height: 20px;
+            animation: fall 2.8s linear infinite
+        }
+
+        @keyframes fall {
+            from {
+                transform: translateY(-80px) rotate(0)
+            }
+            to {
+                transform: translateY(110svh) rotate(720deg)
+            }
+        }
+
+        .result .eyebrow {
+            font-size: 13px;
+            font-weight: 1000;
+            letter-spacing: .13em;
+            text-transform: uppercase
+        }
+
+        .result h2 {
+            font-size: clamp(52px, 17vw, 92px);
+            line-height: .82;
+            margin: 17px 0 18px;
+            letter-spacing: -.08em;
+            color: var(--yellow);
+            text-shadow: 0 7px 0 #7d2b85
+        }
+
+        .result p {
+            font-size: 17px;
+            line-height: 1.4;
+            font-weight: 800;
+            max-width: 420px
+        }
+
+        .money {
+            margin: 20px 0 8px;
+            padding: 20px 28px;
+            background: #fff;
+            border: 5px solid var(--yellow);
+            color: #25162f;
+            border-radius: 28px;
+            font-size: clamp(42px, 14vw, 74px);
+            font-weight: 1000;
+            letter-spacing: -.07em;
+            box-shadow: 0 12px 0 #d8942b, 0 20px 40px #32103d66;
+            animation: pop .7s cubic-bezier(.2, 1.5, .4, 1)
+        }
+
+        @keyframes pop {
+            from {
+                transform: scale(.2) rotate(-8deg);
+                opacity: 0
+            }
+            to {
+                transform: scale(1) rotate(0);
+                opacity: 1
+            }
+        }
+
+        .memories {
+            display: none;
+            color: #fff;
+            text-align: center;
+            padding: 20px 0
+        }
+
+        .memories h3 {
+            font-size: 34px;
+            line-height: .95;
+            margin: 10px 0 14px;
+            letter-spacing: -.05em
+        }
+
+        .photoGrid {
+            display: grid;
+            grid-template-columns:1.3fr .7fr;
+            gap: 10px;
+            margin-top: 22px
+        }
+
+        .photo {
+            width: 100%;
+            min-height: 150px;
+            border-radius: 24px;
+            background: linear-gradient(135deg, #ffd84d, #ff66ae);
+            border: 3px solid #fff;
+            display: grid;
+            place-items: center;
+            font-weight: 1000;
+            color: #25162f;
+            box-shadow: 0 12px 25px #2c103f55
+        }
+
+        .photo:nth-child(2) {
+            background: linear-gradient(135deg, #5ee7ff, #9c74ff)
+        }
+
+        .photo:nth-child(3) {
+            grid-column: 1/-1;
+            background: linear-gradient(135deg, #ff9dcb, #ffd84d)
+        }
+
+        .restart {
+            margin-top: 24px;
+            border: 2px solid #ffffff88;
+            background: #ffffff18;
+            color: #fff;
+            padding: 13px 18px;
+            border-radius: 15px;
+            font-weight: 900
+        }
+
+        @media (max-width: 390px) {
+            .shell {
+                padding: 14px 12px 24px
+            }
+
+            .card {
+                padding: 17px;
+                border-radius: 28px
+            }
+
+            .question {
+                font-size: 27px
+            }
+
+            .option {
+                padding: 12px
+            }
+
+            .option .letter {
+                width: 28px;
+                height: 28px
+            }
+        }
     </style>
 </head>
 <body>
 <div class="page">
-    <div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div><div class="blob b4"></div>
-    <div class="star s1">✦</div><div class="star s2">✧</div><div class="star s3">★</div><div class="star s4">✦</div>
+    <div class="blob b1"></div>
+    <div class="blob b2"></div>
+    <div class="blob b3"></div>
+    <div class="blob b4"></div>
+    <div class="star s1">✦</div>
+    <div class="star s2">✧</div>
+    <div class="star s3">★</div>
+    <div class="star s4">✦</div>
     <div class="shell">
-        <div class="topbar"><div class="logo">AIZHAN • 25</div><div class="badge">💗 birthday edition</div></div>
+        <div class="topbar">
+            <div class="logo">AIZHAN • 25</div>
+            <div class="badge">💗 birthday edition</div>
+        </div>
 
         <section class="hero" id="start">
             <div class="kicker">🎀 СЕГОДНЯ ОСОБЕННЫЙ ДЕНЬ</div>
@@ -144,12 +586,16 @@
         <section class="memories" id="memories">
             <div class="kicker">📸 OUR LITTLE UNIVERSE</div>
             <h3>А теперь<br>самое главное</h3>
-            <p style="font-weight:800;line-height:1.45">Цветы. Котики. Разукрашки. Сериалы. Психология. И почти два года нашей истории.</p>
+            <p style="font-weight:800;line-height:1.45">Цветы. Котики. Разукрашки. Сериалы. Психология. И почти два года
+                нашей истории.</p>
             <div class="photoGrid">
-                <img class="photo" src="./photo_2026-10-08_19-41-23.jpg" alt="">
+                <img alt="" class="photo" src="./photo_2026-10-08_19-41-23.jpg">
 
 
-                <img class="photo" src="./photo_2026-10-08_19-41-24.jpg" alt=""><img class="photo" src="./photo_2026-10-08_19-42-25.jpg" alt=""></div>            <p style="margin-top:22px;font-size:19px;font-weight:1000">С днём рождения, солнышко.<br>Я тебя люблю ❤️</p>
+                <img alt="" class="photo" src="./photo_2026-10-08_19-41-24.jpg"><img alt=""
+                                                                                     class="photo"
+                                                                                     src="./photo_2026-10-08_19-42-25.jpg"></div>
+            <p style="margin-top:22px;font-size:19px;font-weight:1000">С днём рождения, солнышко.<br>Я тебя люблю ❤️</p>
             <button class="restart" onclick="location.reload()">пройти ещё раз</button>
         </section>
     </div>
@@ -158,120 +604,136 @@
 <script>
     const questions = [
         {
-            q:"Где началась история, которая спустя почти два года привела тебя к этому тесту?",
-            a:["Tinder","Twinby","Telegram","Instagram"], correct:1,
-            ok:"Да. С этого всё и закрутилось 💗"
+            q: "Где началась история, которая спустя почти два года привела тебя к этому тесту?",
+            a: ["Tinder", "Twinby", "Telegram", "Instagram"], correct: 1,
+            ok: "Да. С этого всё и закрутилось 💗"
         },
         {
-            q:"Представь: свободный вечер, никаких обязательств. Что из этого звучит максимально по-айжановски?",
-            a:["Разобраться со всеми делами до полуночи","Открыть разукрашку и потерять счёт времени","Сесть и составить план на ближайшие три месяца","Устроить генеральную уборку"], correct:1,
-            ok:"Разукрашка активирована 🎨"
+            q: "Представь: свободный вечер, никаких обязательств. Что из этого звучит максимально по-айжановски?",
+            a: ["Разобраться со всеми делами до полуночи", "Открыть разукрашку и потерять счёт времени", "Сесть и составить план на ближайшие три месяца", "Устроить генеральную уборку"],
+            correct: 1,
+            ok: "Разукрашка активирована 🎨"
         },
         {
-            q:"Какое сочетание сейчас точнее всего описывает твой уютный мир?",
-            a:["Кофе + книги + собака","Цветы + разукрашки + котики","Спорт + путешествия + море","Игры + пицца + шумная компания"], correct:1,
-            ok:"Очень подозрительно точное попадание 🌷🐈"
+            q: "Какое сочетание сейчас точнее всего описывает твой уютный мир?",
+            a: ["Кофе + книги + собака", "Цветы + разукрашки + котики", "Спорт + путешествия + море", "Игры + пицца + шумная компания"],
+            correct: 1,
+            ok: "Очень подозрительно точное попадание 🌷🐈"
         },
         {
-            q:"Что сложнее всего подделать в отношениях, даже если очень постараться?",
-            a:["Хорошее первое впечатление","Вежливость","Ощущение безопасности рядом с человеком","Совпадение вкусов"], correct:2,
-            ok:"Вот тут уже пошли взрослые вопросы."
+            q: "Что сложнее всего подделать в отношениях, даже если очень постараться?",
+            a: ["Хорошее первое впечатление", "Вежливость", "Ощущение безопасности рядом с человеком", "Совпадение вкусов"],
+            correct: 2,
+            ok: "Вот тут уже пошли взрослые вопросы."
         },
         {
-            q:"Если бы твою нынешнюю жизнь превратили в сериал, какой жанр получился бы самым честным?",
-            a:["Романтическая комедия","Психологическая драма","Комедия с неожиданными поворотами","Документалка «Я сама ещё не поняла, что происходит»"], correct:3,
-            ok:"Последний вариант подозрительно жизненный 😄"
+            q: "Если бы твою нынешнюю жизнь превратили в сериал, какой жанр получился бы самым честным?",
+            a: ["Романтическая комедия", "Психологическая драма", "Комедия с неожиданными поворотами", "Документалка «Я сама ещё не поняла, что происходит»"],
+            correct: 3,
+            ok: "Последний вариант подозрительно жизненный 😄"
         },
         {
-            q:"Какой выбор обычно говорит о человеке больше, чем его любимый цвет?",
-            a:["Что он делает, когда никто не видит","Какой у него телефон","Какая у него машина","Какой у него знак зодиака"], correct:0,
-            ok:"Хороший выбор. Взрослый."
+            q: "Какой выбор обычно говорит о человеке больше, чем его любимый цвет?",
+            a: ["Что он делает, когда никто не видит", "Какой у него телефон", "Какая у него машина", "Какой у него знак зодиака"],
+            correct: 0,
+            ok: "Хороший выбор. Взрослый."
         },
         {
-            q:"Что из этого ты, скорее всего, выберешь для повторного просмотра, когда хочется знакомого и комфортного?",
-            a:["Бесстыжие","Случайный документальный фильм","Новости","Новый сериал на 8 сезонов"], correct:0,
-            ok:"Бесстыжие снова победили 📺"
+            q: "Что из этого ты, скорее всего, выберешь для повторного просмотра, когда хочется знакомого и комфортного?",
+            a: ["Бесстыжие", "Случайный документальный фильм", "Новости", "Новый сериал на 8 сезонов"], correct: 0,
+            ok: "Бесстыжие снова победили 📺"
         },
         {
-            q:"Какой навык пригодился бы человеку, который изучает психологию, больше всего?",
-            a:["Читать мысли","Всегда выигрывать спор","Замечать то, что человек не говорит вслух","Уметь убедить любого"], correct:2,
-            ok:"Вот теперь психологический факультет можно считать пройденным 🧠"
+            q: "Какой навык пригодился бы человеку, который изучает психологию, больше всего?",
+            a: ["Читать мысли", "Всегда выигрывать спор", "Замечать то, что человек не говорит вслух", "Уметь убедить любого"],
+            correct: 2,
+            ok: "Вот теперь психологический факультет можно считать пройденным 🧠"
         },
         {
-            q:"Если убрать все большие события, что в итоге делает отношения по-настоящему ценными?",
-            a:["Количество совместных фотографий","Дорогие подарки","Маленькие привычные моменты, которые хочется проживать снова","Совпадение абсолютно во всём"], correct:2,
-            ok:"Кажется, ты поняла главную часть этого теста ❤️"
+            q: "Если убрать все большие события, что в итоге делает отношения по-настоящему ценными?",
+            a: ["Количество совместных фотографий", "Дорогие подарки", "Маленькие привычные моменты, которые хочется проживать снова", "Совпадение абсолютно во всём"],
+            correct: 2,
+            ok: "Кажется, ты поняла главную часть этого теста ❤️"
         },
         {
-            q:"Финальный вопрос. Что я хочу подарить тебе сегодня больше всего?",
-            a:["Красивый букет","Новый сериал","Ещё один тест","Чтобы ты почувствовала, как сильно я тебя люблю"], correct:3,
-            ok:"Вот теперь можно открывать главный подарок. 🎁"
+            q: "Финальный вопрос. Что я хочу подарить тебе сегодня больше всего?",
+            a: ["Красивый букет", "Новый сериал", "Ещё один тест", "Чтобы ты почувствовала, как сильно я тебя люблю"],
+            correct: 3,
+            ok: "Вот теперь можно открывать главный подарок. 🎁"
         }
     ];
 
-    let index=0, answered=false;
+    let index = 0, answered = false;
 
-    function startQuiz(){
-        document.getElementById('start').style.display='none';
-        document.getElementById('quiz').style.display='block';
+    function startQuiz() {
+        document.getElementById('start').style.display = 'none';
+        document.getElementById('quiz').style.display = 'block';
         show();
     }
-    function show(){
-        const x=questions[index];
-        answered=false;
-        document.getElementById('question').textContent=x.q;
-        document.getElementById('counter').textContent=`ВОПРОС ${String(index+1).padStart(2,'0')}`;
-        document.getElementById('tagNum').textContent=String(index+1).padStart(2,'0');
-        document.getElementById('percent').textContent=`${Math.round((index+1)/questions.length*100)}%`;
-        document.getElementById('bar').style.width=`${(index+1)/questions.length*100}%`;
-        const box=document.getElementById('options'); box.innerHTML='';
-        ['A','B','C','D'].forEach((letter,i)=>{
-            const b=document.createElement('button'); b.className='option';
-            b.innerHTML=`<span class="letter">${letter}</span><span>${x.a[i]}</span>`;
-            b.onclick=()=>answer(i,b); box.appendChild(b);
+
+    function show() {
+        const x = questions[index];
+        answered = false;
+        document.getElementById('question').textContent = x.q;
+        document.getElementById('counter').textContent = `ВОПРОС ${String(index + 1).padStart(2, '0')}`;
+        document.getElementById('tagNum').textContent = String(index + 1).padStart(2, '0');
+        document.getElementById('percent').textContent = `${Math.round((index + 1) / questions.length * 100)}%`;
+        document.getElementById('bar').style.width = `${(index + 1) / questions.length * 100}%`;
+        const box = document.getElementById('options');
+        box.innerHTML = '';
+        ['A', 'B', 'C', 'D'].forEach((letter, i) => {
+            const b = document.createElement('button');
+            b.className = 'option';
+            b.innerHTML = `<span class="letter">${letter}</span><span>${x.a[i]}</span>`;
+            b.onclick = () => answer(i, b);
+            box.appendChild(b);
         });
-        document.getElementById('feedback').style.display='none';
-        document.getElementById('next').style.display='none';
+        document.getElementById('feedback').style.display = 'none';
+        document.getElementById('next').style.display = 'none';
     }
-    function answer(i,btn){
-        if(answered)return;
-        answered=true;
-        const x=questions[index];
-        document.querySelectorAll('.option').forEach((b,n)=>{
-            b.disabled=true;
-            if(n===x.correct)b.classList.add('correct');
+
+    function answer(i, btn) {
+        if (answered) return;
+        answered = true;
+        const x = questions[index];
+        document.querySelectorAll('.option').forEach((b, n) => {
+            b.disabled = true;
+            if (n === x.correct) b.classList.add('correct');
         });
-        if(i!==x.correct)btn.classList.add('wrong');
-        const f=document.getElementById('feedback');
-        f.textContent=i===x.correct ? `✨ ${x.ok}` : `😌 Не страшно. Правильный вариант: ${x.a[x.correct]}`;
-        f.style.display='block';
-        const next=document.getElementById('next');
-        next.textContent=index===questions.length-1?'ОТКРЫТЬ ПОДАРОК 🎁':'СЛЕДУЮЩИЙ →';
-        next.style.display='block';
+        if (i !== x.correct) btn.classList.add('wrong');
+        const f = document.getElementById('feedback');
+        f.textContent = i === x.correct ? `✨ ${x.ok}` : `😌 Не страшно. Правильный вариант: ${x.a[x.correct]}`;
+        f.style.display = 'block';
+        const next = document.getElementById('next');
+        next.textContent = index === questions.length - 1 ? 'ОТКРЫТЬ ПОДАРОК 🎁' : 'СЛЕДУЮЩИЙ →';
+        next.style.display = 'block';
     }
-    function nextQuestion(){
-        if(!answered)return;
+
+    function nextQuestion() {
+        if (!answered) return;
         index++;
-        if(index>=questions.length)finish(); else show();
+        if (index >= questions.length) finish(); else show();
     }
-    function finish(){
-        document.getElementById('quiz').style.display='none';
-        document.getElementById('result').style.display='flex';
-        const c=document.getElementById('confetti');
-        for(let i=0;i<70;i++){
-            const b=document.createElement('b');
-            b.textContent=['✦','♥','●','◆','★'][i%5];
-            b.style.left=Math.random()*100+'%';
-            b.style.top=(-10-Math.random()*30)+'%';
-            b.style.animationDelay=(Math.random()*1.8)+'s';
-            b.style.animationDuration=(2+Math.random()*2)+'s';
-            b.style.fontSize=(8+Math.random()*14)+'px';
+
+    function finish() {
+        document.getElementById('quiz').style.display = 'none';
+        document.getElementById('result').style.display = 'flex';
+        const c = document.getElementById('confetti');
+        for (let i = 0; i < 70; i++) {
+            const b = document.createElement('b');
+            b.textContent = ['✦', '♥', '●', '◆', '★'][i % 5];
+            b.style.left = Math.random() * 100 + '%';
+            b.style.top = (-10 - Math.random() * 30) + '%';
+            b.style.animationDelay = (Math.random() * 1.8) + 's';
+            b.style.animationDuration = (2 + Math.random() * 2) + 's';
+            b.style.fontSize = (8 + Math.random() * 14) + 'px';
             c.appendChild(b);
         }
     }
-    function showMemories(){
-        document.getElementById('result').style.display='none';
-        document.getElementById('memories').style.display='block';
+
+    function showMemories() {
+        document.getElementById('result').style.display = 'none';
+        document.getElementById('memories').style.display = 'block';
     }
 </script>
 </body>
